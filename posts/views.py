@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from .models import Article
 
@@ -10,3 +10,9 @@ def index(request):
     }
     return HttpResponse(render(request, 'posts/index.html', context))
     
+def detail(request, article_id):
+    try:
+        article = Article.objects.get(pk=article_id)
+    except Article.DoesNotExist:
+        raise Http404("Article does not exist!")
+    return render(request, 'posts/detail.html', {'article': article})
