@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
+from .forms import CommentsForm
 
 from .models import Article
 
@@ -7,6 +8,7 @@ def index(request):
     article_list = Article.objects.all()
     context = {
         'article_list': article_list,
+        'form': CommentsForm,
     }
     return HttpResponse(render(request, 'posts/index.html', context))
     
