@@ -1,0 +1,9 @@
+{% if article_list %}
+    <ul>
+    {% for a in article_list %}
+        <li><a href="/polls"/{{a.id}}/>{{a.title_text}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Article are available.</p>
+{% endif %}
