@@ -8,7 +8,6 @@ def index(request):
     article_list = Article.objects.all()
     context = {
         'article_list': article_list,
-        'form': CommentsForm,
     }
     return HttpResponse(render(request, 'posts/index.html', context))
     
@@ -17,4 +16,4 @@ def detail(request, article_id):
         article = Article.objects.get(pk=article_id)
     except Article.DoesNotExist:
         raise Http404("Article does not exist!")
-    return render(request, 'posts/detail.html', {'article': article})
+    return render(request, 'posts/detail.html', {'article': article, 'form': CommentsForm})
