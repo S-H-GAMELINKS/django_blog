@@ -6,6 +6,16 @@
     {{ article.content_text }}
 </p>
 
+{% if comments %}
+    <ul>
+    {% for comment in comments %}
+        <li>{{comment.content_text}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Comment are available.</p>
+{% endif %}
+
 <h2>Comments</h2>
 <form action="/posts/{{article.id}}/comments" method="POST">
     {% csrf_token %}
