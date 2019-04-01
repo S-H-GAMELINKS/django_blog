@@ -22,7 +22,7 @@ def detail(request, article_id):
 def comments(request, article_id):
     try:
         article = Article.objects.get(pk=article_id)
-        Comment.objects.create(content_text=request.POST['content_text'])
+        Comment.objects.create(article=article, content_text=request.POST['content_text'])
         comments = Comment.objects.all()
     except Article.DoesNotExist:
         raise Http404("Article does not exist! Can not Create Comments!")
